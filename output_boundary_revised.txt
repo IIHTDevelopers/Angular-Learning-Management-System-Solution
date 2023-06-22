@@ -1,0 +1,2 @@
+usercomponentBoundaryShouldInvalidateTheFormWhenTitleLengthIsGreaterThan100=true
+usercomponentBoundaryShouldInvalidateTheFormWhenTitleLengthIsLessThan3=true
