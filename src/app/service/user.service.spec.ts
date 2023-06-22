@@ -99,7 +99,7 @@ describe('UserService', () => {
     
     it('should search user with start date by calling searchByStartDate() in service', () => {
       const res = 'some message';
-      const API_URL = 'http://127.0.0.1:8081/learningmanagement/users/search?startDate=Sun Jan 01 2023 05:30:00 GMT+0530 (India Standard Time)';
+      const API_URL = 'http://127.0.0.1:8081/learningmanagement/users/search?startDate=Sun Jan 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)';
       jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(res));
       service.searchByStartDate(new Date('2023-01-01'));
       expect(httpClientSpy.get).toBeCalledTimes(1);
