@@ -1,0 +1,97 @@
+<div>
+    <h2>Courses</h2>
+    <ul>
+        <li *ngFor="let course of courses">
+            {{ course.title }} - {{ course.description }}
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h2>Add Course</h2>
+    <form #courseForm="ngForm" (ngSubmit)="addCourse(courseForm)">
+        <input type="text" name="title" ngModel placeholder="Title" required>
+        <input type="text" name="description" ngModel placeholder="Description" required>
+        <input type="text" name="duration" ngModel placeholder="Duration" required>
+        <input type="date" name="enrollmentDeadline" ngModel placeholder="Enrollment Deadline" required>
+        <button type="submit">Add Course</button>
+    </form>
+</div>
+
+<div>
+    <h2>Enrolled Students</h2>
+    <ul>
+        <li *ngFor="let student of students">
+            {{ student.name }} enrolled in
+            <ul>
+                <li *ngFor="let courseId of student.enrolledCourses">
+                    {{ getCoursesTitle(courseId) }}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h2>Enroll Student to Course</h2>
+    <form #enrollmentForm="ngForm" (ngSubmit)="enrollStudentToCourse(enrollmentForm)">
+        <select name="studentId" ngModel required>
+            <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+        </select>
+        <select name="courseId" ngModel required>
+            <option *ngFor="let course of courses" [value]="course.id">{{ course.title }}</option>
+        </select>
+        <button type="submit">Enroll</button>
+    </form>
+</div>
+
+<div>
+    <h2>Student Progress</h2>
+    <ul>
+        <li *ngFor="let progressRecord of progress">
+            {{ getStudentName(progressRecord.studentId) }}
+            in {{ getCourseTitle(progressRecord.courseId) }}:
+            Status - {{ progressRecord.completionStatus }}
+        </li>
+    </ul>
+</div>
+
+
+<div>
+    <h2>Update Progress</h2>
+    <form #progressForm="ngForm" (ngSubmit)="updateProgress(progressForm)">
+        <select name="studentId" ngModel required>
+            <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+        </select>
+        <select name="courseId" ngModel required>
+            <option *ngFor="let course of courses" [value]="course.id">{{ course.title }}</option>
+        </select>
+        <input type="text" name="assignmentTitle" ngModel placeholder="Assignment Title" required>
+        <input type="number" name="score" ngModel placeholder="Score" required>
+        <button type="submit">Update Progress</button>
+    </form>
+</div>
+
+
+<div>
+    <h2>Certificates</h2>
+    <ul>
+        <li *ngFor="let certificate of certificates">
+            Certificate ID: {{ certificate.certificateId }} - Student ID: {{ certificate.studentId }} - Course ID: {{
+            certificate.courseId }}
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h2>Assign Certificate</h2>
+    <form #certificateForm="ngForm" (ngSubmit)="assignCertificate(certificateForm)">
+        <select name="studentId" ngModel required>
+            <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+        </select>
+        <select name="courseId" ngModel required>
+            <option *ngFor="let course of courses" [value]="course.id">{{ course.title }}</option>
+        </select>
+        <button type="submit">Assign Certificate</button>
+    </form>
+</div>
